@@ -1,0 +1,56 @@
+{
+  "name": "Sparsh Store Bot",
+  "description": "Telegram Bot for selling accounts with payment integration",
+  "repository": "https://github.com/harshkingxmdb/storebot",
+  "logo": "https://raw.githubusercontent.com/harshkingxmdb/StoreBot/main/assets/logo.png",
+  "keywords": ["telegram", "bot", "store", "payment", "supabase"],
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Telegram Bot Token from @BotFather",
+      "required": true
+    },
+    "OWNER_ID": {
+      "description": "Telegram ID of the bot owner",
+      "required": true
+    },
+    "SUPABASE_URL": {
+      "description": "Supabase project URL",
+      "required": true
+    },
+    "SUPABASE_KEY": {
+      "description": "Supabase project API key (service_role recommended)",
+      "required": true
+    },
+    "DATABASE_URL": {
+      "description": "Supabase Postgres connection string",
+      "required": true
+    },
+    "ADMIN_IDS": {
+      "description": "Comma-separated list of admin Telegram IDs",
+      "required": false
+    },
+    "UPI_ID_1": {
+      "description": "Primary UPI ID for payments",
+      "required": false
+    },
+    "UPI_ID_2": {
+      "description": "Secondary UPI ID for payments",
+      "required": false
+    },
+    "CRYPTO_USDT_ADDRESS": {
+      "description": "USDT (TRC20) address for payments",
+      "required": false
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}

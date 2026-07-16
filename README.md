@@ -4,7 +4,7 @@ A Telegram bot for selling Telegram accounts with automatic delivery, UPI/crypto
 
 # Deploy Heroku Button ✅ 
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/harshkingxmdb/storebot)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/harshkingxmdb/lnddd)
 
 ## Features
 

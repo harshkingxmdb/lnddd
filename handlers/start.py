@@ -3,7 +3,6 @@ from telegram import Update
 from telegram.ext import ContextTypes
 from middleware.auth import check_user_exists, show_terms, accept_terms_handler, decline_terms_handler
 from middleware.ratelimit import rate_limit, rate_limit_callback
-from utils.premium import handle_premium_user
 from database import log_activity
 
 logger = logging.getLogger(__name__)
@@ -24,10 +23,6 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Check if user exists, if not create
     db_user = await check_user_exists(update, context)
     
-    # Check premium status
-    is_premium = await handle_premium_user(update, context, user)
-    context.user_data['is_premium'] = is_premium
-    
     # Log activity
     log_activity(user_id, "start_command", {"username": user.username})
     
@@ -36,7 +31,11 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         from handlers.menu import show_main_menu
         await show_main_menu(update, context)
     else:
-        await show_terms(update, context)
+        # Check if user object is valid before showing terms
+        if db_user:
+            await show_terms(update, context)
+        else:
+            await update.message.reply_text("❌ Error creating your profile. Please try /start again.")
 
 async def start_with_referral(update: Update, context: ContextTypes.DEFAULT_TYPE, referral_code: str):
     """Handle start with referral code"""
@@ -66,4 +65,4 @@ def get_handlers():
     return [
         CallbackQueryHandler(accept_terms_handler, pattern="^accept_terms$"),
         CallbackQueryHandler(decline_terms_handler, pattern="^decline_terms$"),
-    ]
+        ]

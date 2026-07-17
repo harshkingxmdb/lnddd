@@ -26,7 +26,6 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     
     balance = user.get('wallet_balance', 0)
-    is_premium = context.user_data.get('is_premium', False)
     
     welcome_text = f"""
 {get_emoji('star')} **Welcome to Toxic Store Bot!** {get_emoji('star')}
@@ -38,9 +37,6 @@ async def show_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 Select a service from the keyboard below:
 """
-    
-    if is_premium:
-        welcome_text += f"\n{get_emoji('crown')} **Premium User Benefits Active!**"
     
     keyboard = get_main_menu_keyboard()
     

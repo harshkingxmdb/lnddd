@@ -37,8 +37,13 @@ def get_supabase():
 def get_db_connection():
     """Get direct PostgreSQL connection"""
     try:
+        db_url = os.getenv("DATABASE_URL")
+        if not db_url:
+            logger.error("DATABASE_URL environment variable is not set")
+            return None
+            
         conn = psycopg2.connect(
-            os.getenv("DATABASE_URL"),
+            db_url,
             cursor_factory=RealDictCursor
         )
         return conn
@@ -390,5 +395,3 @@ def get_all_users():
     except Exception as e:
         logger.error(f"Error getting all users: {e}")
         return []
-
-    

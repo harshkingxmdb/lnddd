@@ -29,7 +29,6 @@ async def my_profile_callback(update: Update, context: ContextTypes.DEFAULT_TYPE
     balance = user.get('wallet_balance', 0)
     total_deposit = user.get('total_deposit', 0)
     terms_accepted = user.get('terms_accepted', False)
-    is_premium = context.user_data.get('is_premium', False)
     created_at = user.get('created_at', '')
     
     profile_text = f"""
@@ -44,7 +43,6 @@ async def my_profile_callback(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 📋 **ACCOUNT STATUS**
 • Terms: {'✓ Accepted' if terms_accepted else '✗ Pending'}
-• Premium: {'✓ Active' if is_premium else '✗ Not Active'}
 
 📅 Joined: {format_time_ago(created_at)}
 """
@@ -330,4 +328,3 @@ def get_handlers():
         CallbackQueryHandler(request_otp_callback, pattern="^request_otp_"),
         CommandHandler("otp", handle_otp_command),
     ]
-    

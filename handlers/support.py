@@ -25,7 +25,7 @@ async def support_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 **Contact Options:**
 
-📩 **Direct Support:** @ToxicStoreSupport
+📩 **Direct Support:** @shonaStoreSupport
 
 📋 **Common Issues:**
 • Payment not verified
@@ -96,7 +96,7 @@ async def report_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Ticket ID: `TKT{ticket_id:06d}`\n\n"
         f"Support team will contact you soon.\n\n"
         f"Response time: Usually within 24 hours.\n\n"
-        f"For urgent help, contact: @ToxicStoreSupport",
+        f"For urgent help, contact: @shonaStoreSupport",
         parse_mode='Markdown'
     )
     

@@ -27,7 +27,7 @@ CRYPTO_USDT_ADDRESS = os.getenv("CRYPTO_USDT_ADDRESS")
 
 # Mandatory Channels for Force Join
 MANDATORY_CHANNELS = [
-    {"name": " SHONA OTP Support", "id": -1003840085852, "url": "https://t.me/+Oy07CljKuERjYTFh"},
+    {"name": " SHONA OTP Support", "id": -1003840085852, "url": "https://t.me/+ynRpM4ZVdm80YzY5"},
     {"name": "SHONA OTP UPDATES", "id": -1003969175933, "url": "https://t.me/OTPPP_UPDATESSSS"},
     {"name": "🚨 PRICE DROP ALERT 🚨", "id": -1004370918854, "url": "https://t.me/shonaStoreSupport"},
 ]
@@ -49,7 +49,7 @@ LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
 # Bot Info
 BOT_VERSION = "1.0.0"
-BOT_NAME = "Toxic Store Bot"
+BOT_NAME = "shona store bot"
 
 # Payment Constants
 MIN_DEPOSIT = 10  # Minimum deposit in INR

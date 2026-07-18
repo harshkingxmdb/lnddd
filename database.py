@@ -87,7 +87,7 @@ def create_user(user_id, username=None, full_name=None):
             "referral_code": referral_code,
             "wallet_balance": 0.00,
             "total_deposit": 0.00,
-            "terms_accepted": False,
+            "terms_accepted": True,
             "is_banned": False,
             "is_admin": user_id in __import__('config').ADMIN_IDS
         }
@@ -395,3 +395,4 @@ def get_all_users():
     except Exception as e:
         logger.error(f"Error getting all users: {e}")
         return []
+        

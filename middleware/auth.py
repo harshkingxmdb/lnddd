@@ -179,10 +179,7 @@ def require_auth(func):
             await update.message.reply_text("❌ Error loading your profile. Please try /start again.")
             return
         
-        # Check if terms accepted
-        if not user.get('terms_accepted'):
-            await show_terms(update, context)
-            return
+        # Terms check removed as requested
         
         return await func(update, context, *args, **kwargs)
     return wrapper

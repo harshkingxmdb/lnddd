@@ -91,4 +91,4 @@ def get_bot_username(context):
     try:
         return context.bot.username
     except:
-        return "ToxicStoreBot"
+        return "shonastoressbot"

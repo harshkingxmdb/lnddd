@@ -520,6 +520,10 @@ def get_handlers():
     
     return [
         CommandHandler("admin", admin_command),
+        CommandHandler("stats", admin_stats_callback),
+        CommandHandler("broadcast", admin_broadcast_callback),
+        CommandHandler("add_stock", admin_add_stock_callback),
+        CommandHandler("pending_payments", admin_verify_payment_callback),
         CommandHandler("addcountry", addcountry_command),
         CommandHandler("addstock", addstock_command),
         CommandHandler("ban", ban_command),

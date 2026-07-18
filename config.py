@@ -20,7 +20,17 @@ UPI_IDS = [
 ]
 UPI_IDS = [upi for upi in UPI_IDS if upi]  # Remove empty ones
 
+# UPI QR Image URL (Set this in environment variables or here)
+UPI_QR_URL = os.getenv("UPI_QR_URL", "https://litter.catbox.moe/an43st.jpg")
+
 CRYPTO_USDT_ADDRESS = os.getenv("CRYPTO_USDT_ADDRESS")
+
+# Mandatory Channels for Force Join
+MANDATORY_CHANNELS = [
+    {"name": " SHONA OTP Support", "id": -1003840085852, "url": "https://t.me/+Oy07CljKuERjYTFh"},
+    {"name": "SHONA OTP UPDATES", "id": -1003969175933, "url": "https://t.me/OTPPP_UPDATESSSS"},
+    {"name": "🚨 PRICE DROP ALERT 🚨", "id": -1004370918854, "url": "https://t.me/shonaStoreSupport"},
+]
 
 # Admin Configuration
 ADMIN_IDS = [int(id.strip()) for id in os.getenv("ADMIN_IDS", "").split(",") if id.strip()]
@@ -39,7 +49,7 @@ LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
 # Bot Info
 BOT_VERSION = "1.0.0"
-BOT_NAME = "Shona Store Bot"
+BOT_NAME = "Toxic Store Bot"
 
 # Payment Constants
 MIN_DEPOSIT = 10  # Minimum deposit in INR

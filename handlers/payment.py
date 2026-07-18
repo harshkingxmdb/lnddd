@@ -52,8 +52,8 @@ async def payment_upi_callback(update: Update, context: ContextTypes.DEFAULT_TYP
     # Get first UPI ID
     upi_id = UPI_IDS[0] if UPI_IDS else "BHARATPE.8T0B1B2E2Z16787@fbpe"
     
-    # QR code path
-    qr_path = "assets/qr.jpg"
+    # QR code URL from config
+    from config import UPI_QR_URL
     
     text = f"""
 💳 **UPI PAYMENT (Auto-Verify)**
@@ -68,24 +68,16 @@ async def payment_upi_callback(update: Update, context: ContextTypes.DEFAULT_TYP
 Bot is listening for UTR...
 """
     
-    # Try to send QR photo
+    # Try to send QR photo via URL
     try:
-        import os
-        if os.path.exists(qr_path):
-            with open(qr_path, 'rb') as qr_file:
-                await query.message.reply_photo(
-                    photo=qr_file,
-                    caption=text,
-                    parse_mode='Markdown'
-                )
-            await query.delete_message()
-        else:
-            await query.edit_message_text(
-                text,
-                reply_markup=get_back_keyboard("back_to_funds"),
-                parse_mode='Markdown'
-            )
-    except:
+        await query.message.reply_photo(
+            photo=UPI_QR_URL,
+            caption=text,
+            parse_mode='Markdown'
+        )
+        await query.delete_message()
+    except Exception as e:
+        logger.error(f"Error sending QR photo: {e}")
         await query.edit_message_text(
             text,
             reply_markup=get_back_keyboard("back_to_funds"),
@@ -316,8 +308,5 @@ def get_handlers():
         CallbackQueryHandler(payment_upi_callback, pattern="^payment_upi$"),
         CallbackQueryHandler(payment_crypto_callback, pattern="^payment_crypto$"),
         CallbackQueryHandler(back_to_funds_callback, pattern="^back_to_funds$"),
-        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_utr_message),
-        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_amount_message),
-        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_crypto_amount),
         MessageHandler(filters.PHOTO, handle_crypto_screenshot),
     ]

@@ -68,17 +68,9 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Log activity
     log_activity(user_id, "start_command", {"username": user.username})
     
-    # Check if terms already accepted
-    if db_user and db_user.get('terms_accepted'):
-        from handlers.menu import show_main_menu
-        await show_main_menu(update, context)
-    else:
-        # Check if user object is valid before showing terms
-        if db_user:
-            await show_terms(update, context)
-        else:
-            if update.message:
-                await update.message.reply_text("❌ Error creating your profile. Please try /start again.")
+    # Skip terms and show main menu directly
+    from handlers.menu import show_main_menu
+    await show_main_menu(update, context)
 
 async def check_join_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle check join button"""
@@ -117,5 +109,4 @@ def get_handlers():
         CallbackQueryHandler(accept_terms_handler, pattern="^accept_terms$"),
         CallbackQueryHandler(decline_terms_handler, pattern="^decline_terms$"),
         CallbackQueryHandler(check_join_callback, pattern="^check_join$"),
-            ]
-        
+    ]
